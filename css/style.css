@@ -1,0 +1,263 @@
+/* 基本样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+/* 上传区域样式 */
+.upload-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+#imageUpload {
+    display: none;
+}
+
+.upload-btn {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #2980b9;
+}
+
+.or-text {
+    margin: 20px 0;
+    color: #7f8c8d;
+    position: relative;
+}
+
+.or-text::before,
+.or-text::after {
+    content: "";
+    display: inline-block;
+    width: 100px;
+    height: 1px;
+    background-color: #ddd;
+    position: absolute;
+    top: 50%;
+}
+
+.or-text::before {
+    left: 25%;
+}
+
+.or-text::after {
+    right: 25%;
+}
+
+.drag-area {
+    border: 2px dashed #bdc3c7;
+    border-radius: 5px;
+    padding: 40px;
+    margin-top: 20px;
+    transition: border-color 0.3s;
+}
+
+.drag-area.active {
+    border-color: #3498db;
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.drag-area p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* 编辑区域样式 */
+.editor-section {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.canvas-container {
+    text-align: center;
+    margin-bottom: 20px;
+    overflow: auto;
+    max-height: 500px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#imageCanvas {
+    max-width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 工具区域样式 */
+.tools {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.tool-group {
+    flex: 1;
+    min-width: 200px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.tool-group h3 {
+    margin-bottom: 10px;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.tool-btn {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background-color: #ecf0f1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.tool-btn:hover {
+    background-color: #e0e6e8;
+}
+
+.tool-btn.active {
+    background-color: #3498db;
+    color: white;
+}
+
+/* 选项面板样式 */
+.options-panel {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.options-panel.visible {
+    display: block;
+}
+
+.slider-container {
+    margin: 10px 0;
+}
+
+.slider-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
+}
+
+/* 操作按钮样式 */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 600;
+}
+
+.action-btn:not(.primary) {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+.action-btn:not(.primary):hover {
+    background-color: #dfe6e9;
+}
+
+.action-btn.primary {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.action-btn.primary:hover {
+    background-color: #27ae60;
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #7f8c8d;
+    font-size: 0.9rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .tools {
+        flex-direction: column;
+    }
+    
+    .tool-group {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .actions {
+        flex-wrap: wrap;
+    }
+    
+    .action-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+} 

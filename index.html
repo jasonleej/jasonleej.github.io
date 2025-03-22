@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线图片编辑工具</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>在线图片编辑工具</h1>
+        </header>
+        
+        <main>
+            <div class="upload-section">
+                <input type="file" id="imageUpload" accept="image/*">
+                <label for="imageUpload" class="upload-btn">选择图片</label>
+                <p class="or-text">或</p>
+                <div class="drag-area" id="dropZone">
+                    <p>拖放图片到这里</p>
+                </div>
+            </div>
+            
+            <div class="editor-section" id="editorSection" style="display: none;">
+                <div class="canvas-container">
+                    <canvas id="imageCanvas"></canvas>
+                </div>
+                
+                <div class="tools">
+                    <div class="tool-group">
+                        <h3>基本操作</h3>
+                        <button id="resize" class="tool-btn">调整大小</button>
+                        <button id="crop" class="tool-btn">裁剪</button>
+                        <button id="rotate" class="tool-btn">旋转</button>
+                        <button id="flip" class="tool-btn">翻转</button>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <h3>滤镜</h3>
+                        <button id="grayscale" class="tool-btn">灰度</button>
+                        <button id="sepia" class="tool-btn">复古</button>
+                        <button id="invert" class="tool-btn">反色</button>
+                        <button id="brightness" class="tool-btn">亮度</button>
+                        <button id="contrast" class="tool-btn">对比度</button>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <h3>特效</h3>
+                        <button id="blur" class="tool-btn">模糊</button>
+                        <button id="sharpen" class="tool-btn">锐化</button>
+                        <button id="emboss" class="tool-btn">浮雕</button>
+                        <button id="vignette" class="tool-btn">暗角</button>
+                    </div>
+                    
+                    <div class="tool-group">
+                        <h3>高级功能</h3>
+                        <button id="removeMosaic" class="tool-btn">去除马赛克</button>
+                        <button id="addText" class="tool-btn">添加文字</button>
+                        <button id="drawShape" class="tool-btn">绘制形状</button>
+                    </div>
+                </div>
+                
+                <div class="options-panel" id="optionsPanel">
+                    <!-- 动态显示选项 -->
+                </div>
+                
+                <div class="actions">
+                    <button id="undo" class="action-btn">撤销</button>
+                    <button id="redo" class="action-btn">重做</button>
+                    <button id="reset" class="action-btn">重置</button>
+                    <button id="download" class="action-btn primary">下载</button>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2025 在线图片编辑工具 | 所有权利保留</p>
+        </footer>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html> 
