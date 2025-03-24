@@ -3,82 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>在线图片编辑工具</title>
+    <title>在线音频格式转换工具</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>在线图片编辑工具</h1>
-        </header>
-        
-        <main>
-            <div class="upload-section">
-                <input type="file" id="imageUpload" accept="image/*">
-                <label for="imageUpload" class="upload-btn">选择图片</label>
-                <p class="or-text">或</p>
-                <div class="drag-area" id="dropZone">
-                    <p>拖放图片到这里</p>
+        <!-- 侧边菜单 -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>音频转换器</h2>
+            </div>
+            <nav class="menu">
+                <div class="menu-title">输入格式</div>
+                <ul>
+                    <li class="active"><a href="#" data-format="mp3"><i class="fas fa-music"></i> MP3 转换器</a></li>
+                    <li><a href="#" data-format="wav"><i class="fas fa-file-audio"></i> WAV 转换器</a></li>
+                    <li><a href="#" data-format="aac"><i class="fas fa-file-audio"></i> AAC 转换器</a></li>
+                    <li><a href="#" data-format="ac3"><i class="fas fa-file-audio"></i> AC3 转换器</a></li>
+                    <li><a href="#" data-format="wma"><i class="fas fa-file-audio"></i> WMA 转换器</a></li>
+                    <li><a href="#" data-format="ogg"><i class="fas fa-file-audio"></i> OGG 转换器</a></li>
+                    <li><a href="#" data-format="m4a"><i class="fas fa-file-audio"></i> M4A 转换器</a></li>
+                    <li><a href="#" data-format="flac"><i class="fas fa-file-audio"></i> FLAC 转换器</a></li>
+                    <li><a href="#" data-format="opus"><i class="fas fa-file-audio"></i> OPUS 转换器</a></li>
+                    <li><a href="#" data-format="ape"><i class="fas fa-file-audio"></i> APE 转换器</a></li>
+                    <li><a href="#" data-format="amr"><i class="fas fa-file-audio"></i> AMR 转换器</a></li>
+                </ul>
+                <div class="menu-title">常用工具</div>
+                <ul>
+                    <li><a href="#" data-tool="batch"><i class="fas fa-layer-group"></i> 批量转换</a></li>
+                    <li><a href="#" data-tool="merge"><i class="fas fa-object-group"></i> 合并音频</a></li>
+                    <li><a href="#" data-tool="cut"><i class="fas fa-cut"></i> 裁剪音频</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <header>
+                <h1>在线音频格式转换工具</h1>
+                <p>免费、快速地转换您的音频文件，支持所有流行格式</p>
+            </header>
+
+            <!-- 转换工具区域 -->
+            <div class="converter-section">
+                <div class="format-info">
+                    <h2>MP3 格式转换器</h2>
+                    <p>将其他格式的音频文件转换为MP3格式。MP3是一种常用的音频压缩格式，具有良好的兼容性和较小的文件大小。</p>
+                </div>
+
+                <!-- 文件上传区 -->
+                <div class="upload-area">
+                    <div class="upload-container" id="dropZone">
+                        <input type="file" id="fileInput" multiple accept="audio/*" class="file-input">
+                        <label for="fileInput" class="file-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>点击选择文件或拖放文件到此处</span>
+                            <span class="small">支持批量上传多个文件</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 转换设置 -->
+                <div class="conversion-settings">
+                    <h3>转换设置</h3>
+                    <div class="settings-grid">
+                        <div class="setting-group">
+                            <label for="outputFormat">输出格式</label>
+                            <select id="outputFormat">
+                                <option value="mp3" selected>MP3</option>
+                                <option value="wav">WAV</option>
+                                <option value="aac">AAC</option>
+                                <option value="ogg">OGG</option>
+                                <option value="m4a">M4A</option>
+                                <option value="flac">FLAC</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="bitrate">音频码率</label>
+                            <select id="bitrate">
+                                <option value="64">64 kbps</option>
+                                <option value="128">128 kbps</option>
+                                <option value="192">192 kbps</option>
+                                <option value="256">256 kbps</option>
+                                <option value="320" selected>320 kbps</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="sampleRate">采样率</label>
+                            <select id="sampleRate">
+                                <option value="22050">22.05 kHz</option>
+                                <option value="44100" selected>44.1 kHz</option>
+                                <option value="48000">48 kHz</option>
+                                <option value="96000">96 kHz</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="channels">声道</label>
+                            <select id="channels">
+                                <option value="1">单声道</option>
+                                <option value="2" selected>立体声</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 文件列表 -->
+                <div class="file-list-container" id="fileListContainer" style="display: none;">
+                    <h3>待转换文件 <span id="fileCount">(0)</span></h3>
+                    <div class="file-list" id="fileList"></div>
+                    <div class="convert-actions">
+                        <button id="clearBtn" class="btn btn-outline">清空列表</button>
+                        <button id="convertBtn" class="btn btn-primary">开始转换</button>
+                    </div>
+                </div>
+
+                <!-- 转换结果 -->
+                <div class="conversion-results" id="conversionResults" style="display: none;">
+                    <h3>转换完成</h3>
+                    <div class="results-list" id="resultsList"></div>
+                    <div class="convert-actions">
+                        <button id="downloadAllBtn" class="btn btn-primary">全部下载</button>
+                    </div>
                 </div>
             </div>
-            
-            <div class="editor-section" id="editorSection" style="display: none;">
-                <div class="canvas-container">
-                    <canvas id="imageCanvas"></canvas>
+
+            <!-- 网站信息区域 -->
+            <div class="info-section">
+                <div class="info-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>安全保障</h3>
+                    <p>全部文件在您的浏览器中处理，不会上传到服务器，保障您的文件安全。</p>
                 </div>
-                
-                <div class="tools">
-                    <div class="tool-group">
-                        <h3>基本操作</h3>
-                        <button id="resize" class="tool-btn">调整大小</button>
-                        <button id="crop" class="tool-btn">裁剪</button>
-                        <button id="rotate" class="tool-btn">旋转</button>
-                        <button id="flip" class="tool-btn">翻转</button>
-                    </div>
-                    
-                    <div class="tool-group">
-                        <h3>滤镜</h3>
-                        <button id="grayscale" class="tool-btn">灰度</button>
-                        <button id="sepia" class="tool-btn">复古</button>
-                        <button id="invert" class="tool-btn">反色</button>
-                        <button id="brightness" class="tool-btn">亮度</button>
-                        <button id="contrast" class="tool-btn">对比度</button>
-                    </div>
-                    
-                    <div class="tool-group">
-                        <h3>特效</h3>
-                        <button id="blur" class="tool-btn">模糊</button>
-                        <button id="sharpen" class="tool-btn">锐化</button>
-                        <button id="emboss" class="tool-btn">浮雕</button>
-                        <button id="vignette" class="tool-btn">暗角</button>
-                    </div>
-                    
-                    <div class="tool-group">
-                        <h3>高级功能</h3>
-                        <button id="removeMosaic" class="tool-btn">去除马赛克</button>
-                        <button id="addText" class="tool-btn">添加文字</button>
-                        <button id="drawShape" class="tool-btn">绘制形状</button>
-                    </div>
+                <div class="info-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>快速转换</h3>
+                    <p>采用先进的Web音频处理技术，为您提供快速的音频格式转换。</p>
                 </div>
-                
-                <div class="options-panel" id="optionsPanel">
-                    <!-- 动态显示选项 -->
-                </div>
-                
-                <div class="actions">
-                    <button id="undo" class="action-btn">撤销</button>
-                    <button id="redo" class="action-btn">重做</button>
-                    <button id="reset" class="action-btn">重置</button>
-                    <button id="download" class="action-btn primary">下载</button>
+                <div class="info-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>高品质</h3>
+                    <p>提供多种转换参数，确保转换后的音频达到预期的音质效果。</p>
                 </div>
             </div>
-        </main>
-        
-        <footer>
-            <p>© 2025 在线图片编辑工具 | 所有权利保留</p>
-        </footer>
+        </div>
     </div>
-    
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 在线音频格式转换工具 | 保护您的隐私，提供最佳的音频转换体验</p>
+        </div>
+    </footer>
+
+    <!-- 加载JavaScript库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.0/lame.min.js"></script>
+    <script src="js/ffmpeg.min.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html> 
