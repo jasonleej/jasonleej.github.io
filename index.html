@@ -6,15 +6,20 @@
     <title>在线音频格式转换工具</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- 添加 Material Icons 图标库 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <!-- 侧边菜单 -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="logo">
-                <h2>音频转换器</h2>
+                <h2><i class="fas fa-headphones-alt"></i> 音频转换器</h2>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
-            <nav class="menu">
+            <nav class="menu" id="sidebarMenu">
                 <div class="menu-title">输入格式</div>
                 <ul>
                     <li class="active"><a href="#" data-format="mp3"><i class="fas fa-music"></i> MP3 转换器</a></li>
@@ -41,14 +46,14 @@
         <!-- 主内容区 -->
         <div class="main-content">
             <header>
-                <h1>在线音频格式转换工具</h1>
+                <h1><i class="fas fa-exchange-alt"></i> 在线音频格式转换工具</h1>
                 <p>免费、快速地转换您的音频文件，支持所有流行格式</p>
             </header>
 
             <!-- 转换工具区域 -->
             <div class="converter-section">
                 <div class="format-info">
-                    <h2>MP3 格式转换器</h2>
+                    <h2><i class="fas fa-music"></i> MP3 格式转换器</h2>
                     <p>将其他格式的音频文件转换为MP3格式。MP3是一种常用的音频压缩格式，具有良好的兼容性和较小的文件大小。</p>
                 </div>
 
@@ -66,7 +71,7 @@
 
                 <!-- 转换设置 -->
                 <div class="conversion-settings">
-                    <h3>转换设置</h3>
+                    <h3><i class="fas fa-sliders-h"></i> 转换设置</h3>
                     <div class="settings-grid">
                         <div class="setting-group">
                             <label for="outputFormat">输出格式</label>
@@ -110,20 +115,20 @@
 
                 <!-- 文件列表 -->
                 <div class="file-list-container" id="fileListContainer" style="display: none;">
-                    <h3>待转换文件 <span id="fileCount">(0)</span></h3>
+                    <h3><i class="fas fa-list"></i> 待转换文件 <span id="fileCount">(0)</span></h3>
                     <div class="file-list" id="fileList"></div>
                     <div class="convert-actions">
-                        <button id="clearBtn" class="btn btn-outline">清空列表</button>
-                        <button id="convertBtn" class="btn btn-primary">开始转换</button>
+                        <button id="clearBtn" class="btn btn-outline"><i class="fas fa-trash-alt"></i> 清空列表</button>
+                        <button id="convertBtn" class="btn btn-primary"><i class="fas fa-cogs"></i> 开始转换</button>
                     </div>
                 </div>
 
                 <!-- 转换结果 -->
                 <div class="conversion-results" id="conversionResults" style="display: none;">
-                    <h3>转换完成</h3>
+                    <h3><i class="fas fa-check-circle"></i> 转换完成</h3>
                     <div class="results-list" id="resultsList"></div>
                     <div class="convert-actions">
-                        <button id="downloadAllBtn" class="btn btn-primary">全部下载</button>
+                        <button id="downloadAllBtn" class="btn btn-primary"><i class="fas fa-download"></i> 全部下载</button>
                     </div>
                 </div>
             </div>
@@ -159,5 +164,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lamejs/1.2.0/lame.min.js"></script>
     <script src="js/ffmpeg.min.js"></script>
     <script src="js/app.js"></script>
+    
+    <!-- 添加响应式菜单处理脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+            });
+            
+            // 在小屏幕上点击菜单项后自动收起菜单
+            const menuItems = document.querySelectorAll('.menu li a');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                    }
+                });
+            });
+            
+            // 根据屏幕宽度自动处理菜单的显示
+            function handleResize() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        });
+    </script>
 </body>
 </html> 
